@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 12MP Photos</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Tac+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            padding: 8px 26px;
+            color: black; 
+        }
+        
+        .navbar a:hover {
+            background-color: #ffffff;
+            color: black; 
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 70px 20px 20px; /* Adjust padding-top to prevent content from being hidden behind the navbar */
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .photo-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .picture {
+            max-width: 40%;
+            margin-bottom: 30px; 
+            cursor: pointer;
+        }
+        
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        #overlay img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #overlay .arrow {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.856);
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: black;
+            transform: translateY(-50%);
+            z-index: 2001;
+            border-radius: 10px; /* Adjust the value as needed for the bevel effect */
+        }  
+        
+        #overlay .left-arrow {
+            left: 10px;
+        }
+
+        #overlay .right-arrow {
+            right: 10px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+
+        #overlay .arrow:disabled {
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+
+        .tac-one-regular {
+          font-family: "Tac One", sans-serif;
+         font-weight: 400;
+            font-style: normal;
+           font-size: 40px;
+          margin-top: -50px;
+          letter-spacing: 2px;
+          text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/" target="_blank">Home</a>
+    <a href="https://www.instagram.com/boris_turek" target="_blank">Instagram</a>
+</div>
+
+<div class="container">
+ <div class="static-title tac-one-regular">Portraits</div>
+    <div class="subtitle"></div>
+</div>      
+   
+<div class="photo-column">
+    <img class="picture" src="{{ url_for('static', filename='DSCF2001.jpg') }}">
+    <img class="picture" src="{{ url_for('static', filename='DSCF2263_ Boris Turek 14 let (2).jpg') }}">
+    <img class="picture" src="{{ url_for('static', filename='DSCF9755.jpg') }}">
+</div>
+
+<div id="overlay">
+    <button class="arrow left-arrow">&lt;</button>
+    <img id="overlay-img" src="" alt="Expanded Image">
+    <button class="arrow right-arrow"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+
+<script>
+let currentIndex = 0;
+const pictures = document.querySelectorAll('.picture');
+const overlay = document.getElementById('overlay');
+const overlayImg = document.getElementById('overlay-img');
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+
+function updateOverlay() {
+    overlayImg.src = pictures[currentIndex].src;
+    leftArrow.disabled = currentIndex === 0;
+    rightArrow.disabled = currentIndex === pictures.length - 1;
+}
+
+pictures.forEach((picture, index) => {
+    picture.addEventListener('click', () => {
+        currentIndex = index;
+        overlay.style.display = 'flex';
+        updateOverlay();
+    });
+});
+
+overlay.addEventListener('click', (event) => {
+    if (event.target !== overlayImg && event.target !== leftArrow && event.target !== rightArrow && !event.target.closest('.material-symbols-outlined')) {
+        overlay.style.display = 'none';
+    }
+});
+
+leftArrow.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateOverlay();
+    }
+});
+
+rightArrow.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (currentIndex < pictures.length - 1) {
+        currentIndex++;
+        updateOverlay();
+    }
+});
+</script>
+
+</body>
+</html>

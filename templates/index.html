@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Tac+One&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0); /* Ensure the navbar background color */
+    z-index: 1000;
+}
+
+.navbar a {
+    text-decoration: none;
+    padding: 8px 26px;
+    color: black; 
+    background-color: white;
+    border-radius: 10px;
+}
+
+.navbar a:hover {
+    background-color: #00000019;
+    color: black; 
+}
+
+.title-container {
+    position: absolute;
+    top: 20px;
+    font-size: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+}
+
+.static-title {
+    font-size: 20px;
+    color: black;
+}
+
+.tac-one-regular {
+    font-family: "Tac One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    margin-top: -5px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto; 
+}
+
+.picture {
+    width: 35%; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Adjusted margin for better spacing */
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+.container a p {
+    font-size: 24px; 
+    color: rgb(20, 64, 89);
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+/* Media Query for responsive design */
+@media (max-width: 768px) {
+    .picture {
+        width: 90%;
+        margin-left: 0 !important;
+    }
+
+    .container a p {
+        text-align: center;
+        margin-left: 0 !important;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="about" target="_blank">About</a>
+    <a href="https://www.instagram.com/boris_turek" target="_blank">Instagram</a>
+</div>
+
+<div class="title-container">
+    <div class="static-title tac-one-regular">Boris Turek</div>
+</div>
+
+<div class="container">
+    <img class="picture" style="margin-left: 400px;" src="static/DSCF9544.JPG" alt="Picture 1">
+    <a href="/concerts"><p style="margin-left: 700px;">Concerts</p></a>
+    <img class="picture" style="margin-left: -400px;" src="static/DSCF3670.JPG" alt="Picture 2">
+    <a href="/nightlibeznice"><p style="margin-left: -420px;">Líbeznice at night</p></a>
+    <img class="picture" style="margin-left: 400px;" src="static/DSCF2001.jpg" alt="Picture 3">
+    <a href="/portraits"><p style="margin-left: 650px;">Portraits</p></a>
+</div>
+
+</body>
+</html>
