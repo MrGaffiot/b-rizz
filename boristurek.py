@@ -37,7 +37,7 @@ def [(JMENO PROJEKTU]):
     return render_template("JMENO SOUBORU")
 """
 
-with open("static\\boris.png", "r") as file:
+with open("static/boris.png", "r") as file:
     print("I <3 Boris")
     print(file)
 
