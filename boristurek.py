@@ -40,5 +40,5 @@ def [(JMENO PROJEKTU]):
 with open("static/boris.png", "r") as file:
     print("I <3 Boris")
     print(file)
-
-app.run()
+if __name__ == "__main__":
+    app.run()
